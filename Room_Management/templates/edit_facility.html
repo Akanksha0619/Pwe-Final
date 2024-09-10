@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Edit Facilities{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .edit_fac {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 28px;
+            color: #333;
+            font-weight: bold;
+        }
+        .edit_form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .edit_form label {
+            font-size: 16px;
+            color: #555;
+        }
+        .edit_form input[type="text"],
+        .edit_form input[type="file"],
+        .edit_form select,
+        .edit_form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .edit_form button {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #1775F1;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .edit_form button:hover {
+            background-color: #125bb5;
+        }
+        .edit_form a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #1775F1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .edit_form a:hover {
+            text-decoration: underline;
+            color: #125bb5;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h2 class="edit_fac">Edit Facility</h2>
+    <form class="edit_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{% url 'facility_list' %}">Back to List</a>
+ {% endblock %}

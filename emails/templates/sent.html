@@ -1,0 +1,14 @@
+<h1>sent</h1>
+
+{% for email in emails %}
+    <div class="email-item">
+        <h3>{{ email.subject }}</h3>
+        <p><strong>From:</strong> {{ email.email }}</p>
+        <p><strong>To:</strong> {{ email.recipient }}</p>
+        <p><strong>Date:</strong> {{ email.date_sent }}</p>
+        <div class="email-body">
+            {{ email.body|linebreaksbr }}
+        </div>
+    </div>
+    <hr>
+{% endfor %}

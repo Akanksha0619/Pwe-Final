@@ -1,0 +1,17 @@
+{%load static%}
+<h1>Inbox</h1>
+
+{% for email in emails %}
+    <div class="email-item">
+        <h3>{{ email.subject }}</h3>
+        <p><strong>From:</strong> {{ email.from }}</p>
+        <p><strong>To:</strong> {{ email.to }}</p>
+        <p><strong>Date:</strong> {{ email.date }}</p>
+        <div class="email-body">
+            {{ email.body|linebreaksbr }}  <!-- Converts line breaks to <br> tags -->
+        </div>
+    </div>
+    <hr>
+{% endfor %}
+<a href="{% url 'send_email' %}">send email</a>
+<a href="{% url 'sent'%}"> sent</a>

@@ -1,0 +1,9 @@
+<!-- send_email.html -->
+
+<h1>Send an Email</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send Email</button>
+</form>

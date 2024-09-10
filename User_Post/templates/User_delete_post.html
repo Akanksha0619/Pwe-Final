@@ -1,0 +1,15 @@
+{% extends 'base1.html' %}
+{% block breadcrumb_items %}
+    <!-- Add specific breadcrumb items for this page -->
+    <li class="breadcrumb-item"><a href="{% url 'User_create_post' %}">Create_post</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Delete_Post</li>
+{% endblock %}
+{% block content %}
+<h2>Delete Post: {{ post.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete this post?</p>
+    <button type="submit">Confirm</button>
+    <a href="{% url 'User_post_list' %}">Cancel</a>
+</form>
+{% endblock %}
