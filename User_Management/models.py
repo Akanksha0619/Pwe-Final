@@ -1,7 +1,12 @@
+# User_Management/models.py
 from django.db import models
 from django.contrib.auth.models import User
+
+
+
+
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userprofile')
     full_name = models.CharField(max_length=100)
     age = models.IntegerField(null=True, blank=True)
     room_number = models.CharField(max_length=10)
