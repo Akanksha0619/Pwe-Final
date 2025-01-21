@@ -1,12 +1,14 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core.mail import send_mail, EmailMessage
-# from reportlab.pdfgen import canvas
 import io
-from .models import Subscription
+from .models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
+from .forms import ContactForm
+
+
 def landing(request):
     return render(request, 'landing.html')
 
@@ -106,3 +108,23 @@ def base_login(request):
             return redirect('base_login')
 
     return render(request, 'base_login.html')
+
+
+
+
+from django.db import transaction
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            with transaction.atomic():
+                form.save()
+            messages.success(request, 'Your message has been sent successfully!')
+            return redirect('contact')
+        else:
+            messages.error(request, 'Please correct the errors in the form.')
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
