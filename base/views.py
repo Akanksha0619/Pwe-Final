@@ -21,10 +21,6 @@ def contact(request):
 def service(request):
     return render(request, 'services.html')
 
-def booking(request):
-    return render(request, 'booking.html')
-def room_list(request):
-    return render(request, 'room_list_user.html')
 
 
 @csrf_exempt

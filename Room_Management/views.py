@@ -2,11 +2,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Room
 from .forms import RoomForm
-
+# views.py
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Facility
+from .forms import FacilityForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+from django.shortcuts import render, redirect
+
 
 def add_room(request):
     if request.method == 'POST':
@@ -41,13 +46,6 @@ def room_list(request):
     return render(request, 'room_list.html', {'rooms': rooms})
 
 
-from django.shortcuts import render
-from .models import Room
-
-
-from .models import Room
-from django.shortcuts import render, redirect
-
 def search_rooms(request):
     if request.method == 'GET':
         start_date = request.GET.get('start_date')
@@ -76,44 +74,8 @@ def User_room_detail(request, room_id):
     room = get_object_or_404(Room, pk=room_id)
     return render(request, 'User_room_detail.html', {'room': room})
 
-@login_required
-def User_book_room(request, room_id):
-    room = get_object_or_404(Room, pk=room_id)
-    if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.user = request.user
-            booking.room = room
-            booking.save()
-            return redirect('User_room_list')
-    else:
-        form = BookingForm()
-    return render(request, 'User_book_room.html', {'form': form, 'room': room})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# views.py
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Facility
-from .forms import FacilityForm
 
 def facility_list(request):
     facilities = Facility.objects.all()
@@ -155,3 +117,48 @@ def delete_facility(request, facility_id):
     facility = get_object_or_404(Facility, id=facility_id)
     facility.delete()
     return redirect('facility_list')
+from django.shortcuts import render, redirect
+from .forms import BookingForm
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Room, Booking
+from .forms import BookingForm
+
+def create_booking(request, room_id):
+    room = get_object_or_404(Room, pk=room_id)  # Fetch room using room_id
+    
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            # Set the room for the booking before saving
+            booking = form.save(commit=False)
+            booking.room = room  # Assign the selected room to the booking
+            booking.save()
+            
+            messages.success(request, "Booking successfully created!")
+            return redirect('User_room_list')  # Replace 'booking_list' with your booking list URL
+        else:
+            messages.error(request, "Error in booking form. Please correct the errors.")
+    else:
+        form = BookingForm()
+
+    context = {
+        'form': form,
+        'room': room,  # Pass the room object to the template to display room details
+    }
+    return render(request, 'User_book_room.html', context)
+
+
+from django.shortcuts import render
+from .models import Booking
+from django.contrib.admin.views.decorators import staff_member_required
+
+@staff_member_required
+def admin_booking_list(request):
+    bookings = Booking.objects.all()  # Show all bookings for admin
+    context = {
+        'bookings': bookings,
+    }
+    return render(request, 'admin_booking_list.html', context)
+ # Room object ko fetch karne ka code
+    

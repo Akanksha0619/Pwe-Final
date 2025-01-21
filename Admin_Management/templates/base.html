@@ -38,19 +38,22 @@
 					<li><a href="{% url 'create_post' %}">Posts</a></li>
 					<li><a href="{% url 'post' %}">View Posts</a></li>
 					<li><a href="{% url 'index' %}">Chat</a></li>
-                    <li><a href="{% url 'inbox' %}"> Inbox</a></li>
+                    
 
 				</ul>
 			</li>
 			<li class="divider" data-text="Room And Support">Room And Support</li>
 			
 			<li><a href="{% url 'room_list' %}"><i class='bx bxs-bed icon'></i> Room</a></li>
+			
+			<li><a href="{% url 'admin_booking_list' %}"><i class='bx bxs-bed icon'></i> Room Book</a></li>
+
 			<li><a href="{% url 'facility_list' %}"><i class='bx bxs-bed icon'></i> facility_list</a></li>
 			<li>
 				<a href="#"><i class='bx bx-support icon'></i> Support <i class='bx bx-chevron-right icon-right'></i></a>
 				<ul class="side-dropdown">
 					<li><a href="{% url 'ticket_list' %}">Ticket_list</a></li>
-					<li><a href="#">Leave Requests</a></li>
+					
 					<li><a href="{% url 'budget' %}">Budget</a></li>
 					
 					{% comment %} <li><a href="{% url 'ticket_detail' %}">ticket_detail</a></li> {% endcomment %}
@@ -77,15 +80,9 @@
 					<i class='bx bx-search icon'></i>
 				</div>
 			</form>
-			<a href="#" class="nav-link">
-				<i class='bx bxs-bell icon'></i>
-				<span class="badge">5</span>
-			</a>
-			<a href="#" class="nav-link">
-				<i class='bx bxs-message-square-dots icon'></i>
-				<span class="badge">8</span>
-			</a>
-			<img src="{% static 'admin_static/img/moon.png' %}" id="icon" style="width: 30px; cursor: pointer;">
+			
+			
+	
 
 			<span class="divider"></span>
 			<div class="profile">
@@ -96,11 +93,7 @@
 							<i class='bx bxs-user-circle icon'></i> Profile
 						</a>
 					</li>
-					<li>
-						<a href="{% url 'settings' %}">
-							<i class='bx bxs-cog icon'></i> Settings
-						</a>
-					</li>
+					
 					<li class="divider"></li>
 					<li>
 						<a class="logout" href="{% url 'user_logout' %}">
