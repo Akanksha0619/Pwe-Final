@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">View All Users</li>
+{% endblock %}
 {% block title %}Home{% endblock %}
 {% load static %}
 {% block extra_css %}
@@ -249,6 +253,7 @@
     }
 </style>
 {% endblock %}
+
 {% block content %}
 <main class="table" id="customers_table">
     <section class="table__header">

@@ -1,8 +1,7 @@
 {% extends 'base1.html' %}
-{% block breadcrumb_items %}
-    <!-- Add specific breadcrumb items for this page -->
-    <li class="breadcrumb-item"><a href="{% url 'User_create_post' %}">Create_post</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Delete_Post</li>
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'User_post_list' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Delete Post</li>
 {% endblock %}
 {% block content %}
 <h2>Delete Post: {{ post.title }}</h2>

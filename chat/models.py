@@ -3,25 +3,33 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
+# File Summary:
+# This file defines the models for Room and Message within a Django application, 
+# facilitating communication between users through chat rooms and messages.
+
 # Room Model
 class Room(models.Model):
-    # Room ka unique identifier UUID field se define kar rahe hain
+    # Unique identifier for each Room using UUID
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # ForeignKey to associate the room with the first user
     first_user = models.ForeignKey(User, related_name="room_first", on_delete=models.CASCADE, null=True)
+    # ForeignKey to associate the room with the second user
     second_user = models.ForeignKey(User, related_name="room_second", on_delete=models.CASCADE, null=True)
 
 # Message Model
 class Message(models.Model):
-    # Message model me user ko associate kar rahe hain
+    # ForeignKey to associate the message with a specific user
     user = models.ForeignKey(User, related_name="messages", verbose_name="User", on_delete=models.CASCADE)
-    # Message ko room ke saath link kar rahe hain
+    # ForeignKey to associate the message with a specific room
     room = models.ForeignKey(Room, related_name="messages", verbose_name="Room", on_delete=models.CASCADE)
-    # Message content ko text field me store kar rahe hain
+    # Field to store the content of the message
     content = models.TextField(verbose_name="Message Content")
-    # Message create hote hi uska timestamp auto add hota hai
-    created_date = models.DateTimeField(auto_now_add=True, verbose_name="Creation Date")  # Accurate timestamp ke liye DateTimeField use kiya
+    # Automatically captures the timestamp when the message is created
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name="Creation Date")
+    # Additional field for any other information
     what_is_it = models.CharField(max_length=50, null=True)
 
+    # Method to get the formatted time of message creation
     def get_short_date(self):
         local_time = timezone.localtime(self.created_date)
         return local_time.strftime("%H:%M")

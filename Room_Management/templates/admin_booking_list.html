@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
-
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Room Booking List</li>
+{% endblock %}
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center mb-4" style="color: #0C5FCD;;">All Bookings</h2>

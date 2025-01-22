@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Facility List</li>
+{% endblock %}
 {% load static %}
 {% block title %}Facilities List{% endblock %}
 

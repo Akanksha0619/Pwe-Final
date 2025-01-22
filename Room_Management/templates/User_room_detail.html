@@ -1,7 +1,7 @@
 {% extends 'base1.html' %}
-{% block breadcrumb_items %}
-    <!-- Add specific breadcrumb items for this page -->
-    <li class="breadcrumb-item"><a href="{% url 'room_list' %}">Room List</a></li>
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'User_post_list' %}">Home</a></li>
+ <li class="breadcrumb-item"><a href="{% url 'User_room_list' %}">Room List</a></li>
     <li class="breadcrumb-item active" aria-current="page">Room Detail</li>
 {% endblock %}
 {% block content %}

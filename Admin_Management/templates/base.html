@@ -15,15 +15,48 @@
 			width: 30px;
 			cursor: pointer;
 		}
-	</style>
-    {% endblock %}
+	   /* Style the breadcrumb block */
+     /* Your breadcrumb specific styles */
+        #breadcrumb {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            list-style: none;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb-item {
+            font-size: 16px;
+            font-weight: 500;
+            margin-right: 15px;
+        }
+
+        .breadcrumb-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+</style>
+{% endblock %}
+
 </head>
 <body>
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="#" class="brand"><i class='bx bxs-smile icon'></i> AdminSite</a>
+		<a href="{% url 'home' %}" class="brand"><i class='bx bxs-smile icon'></i> AdminSite</a>
 		<ul class="side-menu">
-			<li><a href="#" class="active"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
+			<li><a href="{% url 'home' %}" class="active"><i class='bx bxs-dashboard icon'></i> Dashboard</a></li>
 			<li class="divider" data-text="User And Post">User And Post</li>
 			<li>
 				<a href="#"><i class='bx bxs-user-circle icon'></i> User <i class='bx bx-chevron-right icon-right'></i></a>
@@ -48,15 +81,16 @@
 			
 			<li><a href="{% url 'admin_booking_list' %}"><i class='bx bxs-bed icon'></i> Room Book</a></li>
 
-			<li><a href="{% url 'facility_list' %}"><i class='bx bxs-bed icon'></i> facility_list</a></li>
+			<li><a href="{% url 'facility_list' %}"><i class='bx bxs-bed icon'></i> facility List</a></li>
+			<li class="divider" data-text="User And Post">Support</li>
 			<li>
 				<a href="#"><i class='bx bx-support icon'></i> Support <i class='bx bx-chevron-right icon-right'></i></a>
 				<ul class="side-dropdown">
-					<li><a href="{% url 'ticket_list' %}">Ticket_list</a></li>
+					<li><a href="{% url 'ticket_list' %}">Ticket list</a></li>
 					
 					<li><a href="{% url 'budget' %}">Budget</a></li>
 					
-					{% comment %} <li><a href="{% url 'ticket_detail' %}">ticket_detail</a></li> {% endcomment %}
+					{% comment %} <li><a href="{% url 'ticket_detail' %}">ticket detail</a></li> {% endcomment %}
 					
 				</ul>
 			</li>
@@ -105,6 +139,19 @@
 			</div>
 			
 		</nav>
+
+<section id="breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% block breadcrumb %}
+                <!-- Default breadcrumb content, if not overridden -->
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            {% endblock %}
+        </ol>
+    </nav>
+</section>
+
+
 
 		<!-- MAIN -->
 		<main>

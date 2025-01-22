@@ -1,8 +1,7 @@
 {% extends 'base1.html' %}
-{% block breadcrumb_items %}
-    <!-- Add specific breadcrumb items for this page -->
-    <li class="breadcrumb-item"><a href="{% url 'post_list' %}">Post List</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Update post</li>
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'User_post_list' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Update Post</li>
 {% endblock %}
 {% block content %}
 <div style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 160px); padding: 20px; background-color: #f4f4f4; font-family: 'Roboto', sans-serif; margin-top: 80px; margin-bottom: 80px;">

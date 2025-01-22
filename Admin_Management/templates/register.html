@@ -3,6 +3,7 @@
 
 {% block title %}Home{% endblock %}
 {% block extra_css %}
+
 <style>
     /* Style the form container */
 #register-form {
@@ -68,8 +69,13 @@ input[type="password"]:focus {
 
 </style>
 {% endblock%}
-{% block content %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Register</li>
+{% endblock %}
+
+{% block content %}
 <h2>Register</h2>
 <form method="post" id="register-form">
     {% csrf_token %}

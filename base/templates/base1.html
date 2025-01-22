@@ -36,6 +36,7 @@
 
 </head>
 <body>
+
 <header>
     
 {% block extra_css %}
@@ -60,6 +61,37 @@
             100% {
                 opacity: 1;
             }
+        }
+      /* Your breadcrumb specific styles */
+        #breadcrumb {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .breadcrumb {
+            display: flex;
+            padding: 0;
+            list-style: none;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb-item {
+            font-size: 16px;
+            font-weight: 500;
+            margin-right: 15px;
+        }
+
+        .breadcrumb-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
         }
     </style>
    
@@ -120,6 +152,16 @@
             </div>
         </div>
     </nav>
+<section id="breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% block breadcrumb %}
+                <!-- Default breadcrumb content, if not overridden -->
+                <li class="breadcrumb-item"><a href="{% url 'User_post_list' %}">Home</a></li>
+            {% endblock %}
+        </ol>
+    </nav>
+</section>
 
     {% block content %}
     {% endblock %}

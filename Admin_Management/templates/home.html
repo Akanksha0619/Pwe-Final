@@ -118,19 +118,19 @@ main {
     
     <section class="stats">
         <div class="card">
-            <h2>Users</h2>
+            <h2><a href="{% url 'view_all_users' %}">Users</a></h2>
             <p>Manage all users from here</p>
         </div>
         <div class="card">
-            <h2>Rooms</h2>
+            <h2><a href="{% url 'room_list' %}">Room</a></h2>
             <p>View and manage rooms</p>
         </div>
         <div class="card">
-            <h2>Communication</h2>
+            <h2><a href="{% url 'post' %}">Communication</a></h2>
             <p>Communicate with users</p>
         </div>
         <div class="card">
-            <h2>Support</h2>
+           <h2><a href="{% url 'ticket_list' %}">Support</a></h2>
             <p>Handle support tickets and leave requests</p>
         </div>
     </section>

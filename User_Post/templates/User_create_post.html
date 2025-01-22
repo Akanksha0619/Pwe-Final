@@ -1,4 +1,8 @@
 {% extends 'base1.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'User_post_list' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Create Post</li>
+{% endblock %}
 {% block breadcrumb_items %}
     <!-- Add specific breadcrumb items for this page -->
     <li class="breadcrumb-item active" style="text-color: #FD7792;" aria-current="page">Create_Post</li>
